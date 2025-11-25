@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>தமிழ் உயிர் எழுத்துக்கள் பயிற்சி</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>🌟 உயிர் எழுத்துக்கள் கற்றல் மையம் 🌟</h1>
+    
+    <section id="phase-1" class="learning-section">
+        <h2>1. ஒலிச் சாளரம் (அறிமுகம்)</h2>
+        <div id="letter-display">
+            <p class="tamil-letter">அ</p>
+            <img src="assets/images/anil.png" alt="அணில் படம்">
+            <button onclick="playSound('a')">ஒலி கேட்க</button>
+        </div>
+        <button onclick="nextLetter()">அடுத்த எழுத்து</button>
+    </section>
+    <section id="phase-2" class="learning-section" style="margin-top: 40px;">
+        <h2>2. குரங்கு மற்றும் வாழைப்பழம் (எழுத்துக் கண்டறிதல்)</h2>
+        <p>குரங்கு கேட்கும் <span id="target-letter" style="font-weight: bold; color: green; font-size: 1.5em;"></span> என்ற எழுத்தை கிளிக் செய்யவும்!</p>
+        
+        <div id="banana-container">
+            </div>
+    
+        <div id="feedback-message" style="margin-top: 20px;"></div>
+    </section>
+    <section id="phase-3" class="learning-section" style="margin-top: 40px;">
+        <h2>3. எழுத்துப் பொக்கிஷப் பெட்டி (பொருத்துதல்)</h2>
+        <p>சரியான எழுத்துடன் அதன் ஒலியை இணைத்து, பொக்கிஷப் பெட்டியைத் திறக்கவும்!</p>
+    
+        <div id="matching-container">
+            <div id="letters-column" class="match-column">
+                <h3>தமிழ் எழுத்துக்கள்</h3>
+                </div>
+            <div id="sounds-column" class="match-column">
+                <h3>ஒலிகள்</h3>
+                </div>
+        </div>
+        
+        <div id="treasure-feedback" style="margin-top: 20px;"></div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

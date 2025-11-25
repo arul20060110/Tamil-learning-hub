@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* வெளிர் நீலப் பின்னணி */
+    text-align: center;
+}
+
+.tamil-letter {
+    font-size: 8em; /* பெரிய எழுத்து */
+    color: #ff6347; /* பிரகாசமான நிறம் */
+    cursor: pointer;
+}
+
+#letter-display {
+    padding: 20px;
+    border: 3px solid #ffd700; /* தங்க நிற பார்டர் */
+    display: inline-block;
+    background-color: white;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+#banana-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* வாழைப்பழங்களுக்கு இடையில் இடைவெளி */
+    margin-top: 30px;
+}
+
+.banana-item {
+    background-color: #ffe033; /* வாழைப்பழம் மஞ்சள் */
+    padding: 20px;
+    border-radius: 15px; /* வளைந்த மூலைகள் */
+    box-shadow: 4px 4px 0px #d4af37; /* ஆழமான தோற்றம் */
+    font-size: 3em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.banana-item:hover {
+    transform: translateY(-5px); /* ஹோவர் செய்யும் போது சற்று மேலே நகர்த்தவும் */
+}
+#matching-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.match-column {
+    width: 45%;
+    padding: 10px;
+    min-height: 300px;
+    border: 1px dashed #aaa;
+    border-radius: 8px;
+}
+
+.match-item {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.draggable {
+    background-color: #f8d7da; /* எழுத்துக்களுக்கு இளஞ்சிவப்பு */
+    cursor: grab;
+}
+
+.droppable {
+    background-color: #f7f7f7; /* ஒலிப் பெட்டிக்கு சாம்பல் */
+    border: 2px solid #007bff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
