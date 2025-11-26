@@ -210,3 +210,107 @@ window.onload = () => {
     startMonkeyGame(); // Phase 2 தொடக்கம்
     startTreasureGame(); // Phase 3 தொடக்கம்
 };
+const MEI_ELUTHUKKAL = [
+    { letter: 'க்', type: 'வல்லினம்' },
+    { letter: 'ங்', type: 'மெல்லினம்' },
+    { letter: 'ச்', type: 'வல்லினம்' },
+    { letter: 'ஞ்', type: 'மெல்லினம்' },
+    { letter: 'ட்', type: 'வல்லினம்' },
+    { letter: 'ண்', type: 'மெல்லினம்' },
+    { letter: 'த்', type: 'வல்லினம்' },
+    { letter: 'ந்', type: 'மெல்லினம்' },
+    { letter: 'ப்', type: 'வல்லினம்' },
+    { letter: 'ம்', type: 'மெல்லினம்' },
+    { letter: 'ய்', type: 'இடையினம்' },
+    { letter: 'ர்', type: 'இடையினம்' },
+    { letter: 'ல்', type: 'இடையினம்' },
+    { letter: 'வ்', type: 'இடையினம்' },
+    { letter: 'ழ்', type: 'இடையினம்' },
+    { letter: 'ள்', type: 'இடையினம்' }
+];
+ MEI_TYPES = ['Valinam', 'Mellinam', 'Idaiyinam'];
+
+
+
+let correctlySortedCount = 0; // சரியாக வகைப்படுத்தப்பட்ட எழுத்துக்களின் எண்ணிக்கை
+
+function startMeiSortingGame() {
+    // தரவுகளைக் கலக்க
+    shuffleArray(MEI_ELUTHUKKAL); 
+    
+    const lettersPool = document.getElementById('mei-letters-pool');
+    lettersPool.innerHTML = ''; // முந்தைய எழுத்துக்களை நீக்க
+
+    correctlySortedCount = 0;
+    
+    // பெட்டிகளைச் சுத்தம் செய்து, Drop Events சேர்க்கவும்
+    MEI_TYPES.forEach(type => {
+        const box = document.getElementById(`${type}-box`);
+        box.innerHTML = `<h3>${type}</h3>`; // தலைப்பை மட்டும் வைத்து மற்றதை நீக்க
+        box.style.backgroundColor = '#f7f7f7'; // நிறத்தை மீட்டமைக்க
+        
+        // Drop Events (மீண்டும் பயன்படுத்தலாம்)
+        box.addEventListener('dragover', dragOver); // dragOver ஏற்கனவே வரையறுக்கப்பட்டுள்ளது
+        box.addEventListener('drop', handleMeiDrop);
+    });
+    
+    // இழுக்க வேண்டிய எழுத்துக்களை உருவாக்கவும்
+    MEI_ELUTHUKKAL.forEach((item, index) => {
+        const letterDiv = document.createElement('div');
+        letterDiv.className = 'mei-draggable draggable'; 
+        letterDiv.textContent = item.letter;
+        letterDiv.setAttribute('draggable', true);
+        letterDiv.setAttribute('id', `mei-letter-${index}`);
+        letterDiv.setAttribute('data-mei-type', item.type); // சரியான வகையைக் குறிப்பு
+        
+        letterDiv.addEventListener('dragstart', dragStart); // dragStart ஏற்கனவே வரையறுக்கப்பட்டுள்ளது
+        lettersPool.appendChild(letterDiv);
+    });
+
+    document.getElementById('sorting-feedback').textContent = '';
+}
+
+function handleMeiDrop(e) {
+    e.preventDefault();
+    const draggedId = e.dataTransfer.getData('text/plain');
+    const draggedElement = document.getElementById(draggedId);
+    const dropTarget = e.currentTarget;
+    
+    // இழுக்கப்பட்ட எழுத்தின் சரியான வகையை எடுத்தல்
+    const draggedType = draggedElement.getAttribute('data-mei-type');
+    // இலக்கு பெட்டியின் வகையை எடுத்தல்
+    const targetType = dropTarget.getAttribute('data-type');
+    
+    if (draggedType === targetType) {
+        // சரியான பொருத்துதல்
+        document.getElementById('sorting-feedback').textContent = `சரியான வகை: ${targetType}! 👍`;
+        document.getElementById('sorting-feedback').style.color = 'green';
+        
+        dropTarget.appendChild(draggedElement); // எழுத்தை பெட்டிக்குள் வைக்கவும்
+        draggedElement.classList.remove('draggable'); // இனி இழுக்க முடியாது
+        draggedElement.draggable = false;
+        
+        correctlySortedCount++;
+        
+        if (correctlySortedCount === MEI_ELUTHUKKAL.length) {
+            // அனைத்து எழுத்துக்களும் வகைப்படுத்தப்பட்ட பிறகு
+            document.getElementById('sorting-feedback').textContent = 'மெய் எழுத்துக்கள் வேட்டையில் வெற்றி! நீங்கள் சாம்பியன்! 🏆';
+            dropTarget.style.backgroundColor = '#c3e6cb'; // வெற்றிக்கு பச்சை நிறம்
+        }
+    } else {
+        // தவறான பொருத்துதல்
+        document.getElementById('sorting-feedback').textContent = `தவறு! 😥 ${draggedElement.textContent} எழுத்து, ${targetType} வகையைச் சேர்ந்தது அல்ல. முயற்சி செய்க!`;
+        document.getElementById('sorting-feedback').style.color = 'red';
+    }
+}
+
+// பக்கம் லோட் ஆனவுடன் விளையாட்டுகளைத் தொடங்குதல் (window.onload-இல் இதைச் சேர்க்கவும்)
+window.onload = () => {
+    updateDisplay(); 
+    startMonkeyGame(); 
+    startTreasureGame(); 
+    startMeiSortingGame(); // புதிய விளையாட்டுச் செயல்பாடு
+};
+
+
+const MEI_TYPES = ['வல்லினம்', 'மெல்லினம்', 'இடையினம்'];
