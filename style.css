@@ -6,7 +6,7 @@ body {
 
 .tamil-letter {
     font-size: 8em; /* பெரிய எழுத்து */
-    color: #ff6347; /* பிரகாசமான நிறம் */
+    color:blue; /* பிரகாசமான நிறம் */
     cursor: pointer;
 }
 
