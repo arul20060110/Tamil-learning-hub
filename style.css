@@ -70,7 +70,7 @@ button {
 }
 
 .draggable {
-    background-color: #f8d7da; /* எழுத்துக்களுக்கு இளஞ்சிவப்பு */
+    background-color: blue; /* எழுத்துக்களுக்கு இளஞ்சிவப்பு */
     cursor: grab;
 }
 
