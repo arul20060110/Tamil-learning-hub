@@ -76,7 +76,7 @@ button {
 
 .droppable {
     background-color: #f7f7f7; /* ஒலிப் பெட்டிக்கு சாம்பல் */
-    border: 2px solid #007bff;
+    border: 2px solid blue;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -91,7 +91,7 @@ button {
 .sort-box {
     width: 30%;
     min-height: 250px;
-    border: 3px solid #0056b3; /* நீல நிற பார்டர் */
+    border: 3px solid blue; /* நீல நிற பார்டர் */
     border-radius: 10px;
     padding: 10px;
     text-align: center;
